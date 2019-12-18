@@ -1,5 +1,5 @@
 <script lang="typescript">
-	let name: string = 'abc'
+	let username: string = 'abc'
 </script>
 
 <style lang="less">
