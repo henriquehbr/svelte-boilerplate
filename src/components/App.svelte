@@ -3,14 +3,9 @@
 </script>
 
 <style lang="less">
-	@text: ' World!';
 	h1 {
 		color: blue;
-
-		&::after {
-			content: @text;
-		}
 	}
 </style>
 
-<h1>Hello</h1>
+<h1>Hello World!</h1>
