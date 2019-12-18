@@ -18,11 +18,6 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@pyoner/svelte-types@^3.4.4-2":
-  version "3.4.4-2"
-  resolved "https://registry.yarnpkg.com/@pyoner/svelte-types/-/svelte-types-3.4.4-2.tgz#0bc64255d56e82a5e7f3d0b31b324551a77da6b0"
-  integrity sha512-5oQsFCU9pxu1mdA72e2XOqVmheSQfpaQnsmvO4FTEd6D3k3Wx3Nr4s2m0gfqjGLHoGGEo9FOK4xQXXX7D5Uz6A==
-
 "@rollup/plugin-alias@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-2.2.0.tgz#3ac52ece8b39583249884adb90fb316484389fe5"
@@ -116,6 +111,11 @@
   integrity sha512-2XZovu4NwcqmtZtsBR5XYLw18T8cBCnU2USFHTnYLLHz9fkhnoEMoDsqShJIOFsFhn5aJHjweiUUdTrDGujegA==
   dependencies:
     "@types/node" "*"
+
+"@types/sortablejs@^1.10.1":
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@types/sortablejs/-/sortablejs-1.10.1.tgz#a625a9b688ebd588f7722441f4b0ddc2f38a3ee3"
+  integrity sha512-b4vrysEzOPmQMWSYXI2Az6Vpo+3LYsqszrgk3orHpUdzJgvnOtGGquWsUbSPNv5oANMwK/6tQWf9dnENe0vaBQ==
 
 "@typescript-eslint/eslint-plugin@^2.12.0":
   version "2.12.0"
