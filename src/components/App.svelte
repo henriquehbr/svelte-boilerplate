@@ -1,11 +1,17 @@
 <script lang="typescript">
-	let username: string = 'abc'
+	import Card from 'components/Card'
 </script>
 
 <style lang="less">
-	h1 {
+	.card :global(h1) {
 		color: blue;
+		margin: 0;
+		font-family: 'Arial';
 	}
 </style>
 
-<h1>Hello World!</h1>
+<div class="card">
+	<Card>
+		<h1>Hello World!</h1>
+	</Card>
+</div>

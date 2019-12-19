@@ -1,31 +1,40 @@
-import svelte from 'rollup-plugin-svelte'
 import path from 'path'
+
 import resolve from '@rollup/plugin-node-resolve'
 import alias from '@rollup/plugin-alias'
-import html from '@rollup/plugin-html'
+
+import svelte from 'rollup-plugin-svelte'
 import commonjs from 'rollup-plugin-commonjs'
-import postcss from 'rollup-plugin-postcss'
-import sveltePreprocess from 'svelte-preprocess'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
+import serve from 'rollup-plugin-serve'
 import bundleSize from 'rollup-plugin-bundle-size'
 import brotli from 'rollup-plugin-brotli'
+import livereload from 'rollup-plugin-livereload'
+
+import sveltePreprocess from 'svelte-preprocess'
+
+const production = !process.env.ROLLUP_WATCH
 
 export default {
 	input: './src/index.ts',
 	output: {
 		format: 'iife',
 		name: 'app',
-		file: 'build/bundle.js'
+		file: 'public/build/bundle.js'
 	},
 	plugins: [
-		svelte({ dev: false, emitCss: true, preprocess: sveltePreprocess() }),
+		svelte({
+			dev: !production,
+			css: css => css.write('public/build/bundle.css', false),
+			preprocess: sveltePreprocess()
+		}),
 		resolve({
 			browser: true,
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
 			customResolveOptions: {
 				moduleDirectory: ['src', 'node_modules'],
-				extensions: ['.svelte', '.mjs', '.js', '.json']
+				extensions: ['.svelte', '/index.svelte', '.mjs', '.js', '.json']
 			}
 		}),
 		alias({
@@ -34,11 +43,14 @@ export default {
 			}
 		}),
 		typescript({ objectHashIgnoreUnknownHack: true }),
-		terser(),
 		commonjs(),
-		postcss({ extract: true, minimize: true }),
-		html(),
-		brotli({ additional: ['build/bundle.css'] }),
-		bundleSize()
-	]
+		bundleSize(),
+		production && brotli({ additional: ['public/build/bundle.css'] }),
+		!production && serve('public'),
+		!production && livereload('public'),
+		production && terser()
+	],
+	watch: {
+		clearScreen: false
+	}
 }
