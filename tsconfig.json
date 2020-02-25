@@ -5,20 +5,16 @@
 		/* Basic Options */
 		"target": "esnext",
 		"module": "esnext",
-		"lib": ["es6", "dom"],
 		"removeComments": true,
 
 		/* Strict Type-Checking Options */
 		"strict": true,
+		"types": ["@pyoner/svelte-types"],
 
 		/* Module Resolution Options */
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
-		"baseUrl": "./src",
-		"paths": {
-			"*": ["./*"],
-			"components": ["components/"]
-		}
+		"baseUrl": "./src"
 	}
 }

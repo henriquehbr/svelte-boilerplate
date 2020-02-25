@@ -1,3 +1,3 @@
-import App from 'components/App'
+import App from './App.svelte'
 
-new App({ target: document.querySelector('main') })
+new App({ target: document.body })

@@ -1,2 +1,2 @@
-declare module 'components'
+declare module '*.svelte'
 declare module 'components/*'

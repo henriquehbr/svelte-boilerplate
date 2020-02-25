@@ -1,19 +1,5 @@
 import path from 'path'
 
-import resolve from '@rollup/plugin-node-resolve'
-import alias from '@rollup/plugin-alias'
-
-import svelte from 'rollup-plugin-svelte'
-import commonjs from 'rollup-plugin-commonjs'
-import typescript from 'rollup-plugin-typescript2'
-import { terser } from 'rollup-plugin-terser'
-import serve from 'rollup-plugin-serve'
-import bundleSize from 'rollup-plugin-bundle-size'
-import brotli from 'rollup-plugin-brotli'
-import livereload from 'rollup-plugin-livereload'
-
-import sveltePreprocess from 'svelte-preprocess'
-
 const production = !process.env.ROLLUP_WATCH
 
 export default {
@@ -24,12 +10,12 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
-		svelte({
+		require('rollup-plugin-svelte')({
 			dev: !production,
 			css: css => css.write('public/build/bundle.css', false),
-			preprocess: sveltePreprocess()
+			preprocess: require('svelte-preprocess')()
 		}),
-		resolve({
+		require('@rollup/plugin-node-resolve')({
 			browser: true,
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
 			customResolveOptions: {
@@ -37,20 +23,17 @@ export default {
 				extensions: ['.svelte', '/index.svelte', '.mjs', '.js', '.json']
 			}
 		}),
-		alias({
+		require('@rollup/plugin-alias')({
 			entries: {
 				components: path.resolve(__dirname, 'src', 'components')
 			}
 		}),
-		typescript({ objectHashIgnoreUnknownHack: true }),
-		commonjs(),
-		bundleSize(),
-		production && brotli({ additional: ['public/build/bundle.css'] }),
-		!production && serve('public'),
-		!production && livereload('public'),
-		production && terser()
-	],
-	watch: {
-		clearScreen: false
-	}
+		require('@rollup/plugin-typescript')(),
+		require('@rollup/plugin-commonjs')(),
+		require('rollup-plugin-bundle-size')(),
+		production && require('rollup-plugin-brotli')({ additional: ['public/build/bundle.css'] }),
+		!production && require('rollup-plugin-serve')('public'),
+		!production && require('rollup-plugin-livereload')('public'),
+		production && require('rollup-plugin-terser').terser()
+	]
 }
