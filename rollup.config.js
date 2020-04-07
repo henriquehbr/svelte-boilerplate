@@ -5,9 +5,9 @@ const production = !process.env.ROLLUP_WATCH
 export default {
 	input: './src/index.ts',
 	output: {
-		format: 'iife',
+		format: 'es',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		dir: 'public/build'
 	},
 	plugins: [
 		require('rollup-plugin-svelte')({
@@ -30,10 +30,8 @@ export default {
 		}),
 		require('@rollup/plugin-typescript')(),
 		require('@rollup/plugin-commonjs')(),
-		require('rollup-plugin-bundle-size')(),
-		production && require('rollup-plugin-brotli')({ additional: ['public/build/bundle.css'] }),
 		!production && require('rollup-plugin-serve')('public'),
 		!production && require('rollup-plugin-livereload')('public'),
-		production && require('rollup-plugin-terser').terser()
+		require('rollup-plugin-terser').terser()
 	]
 }
