@@ -1,5 +1,5 @@
 <script lang="typescript">
-	import Card from 'components/Card'
+	import { Card } from 'components'
 </script>
 
 <Card />

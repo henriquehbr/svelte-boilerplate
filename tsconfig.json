@@ -1,15 +1,12 @@
 {
-	"include": ["src/**/*"],
-	"exclude": ["node_modules/*"],
 	"compilerOptions": {
 		/* Basic Options */
 		"target": "esnext",
-		"module": "esnext",
+		"module": "es6",
 		"removeComments": true,
 
 		/* Strict Type-Checking Options */
 		"strict": true,
-		"types": ["@pyoner/svelte-types"],
 
 		/* Module Resolution Options */
 		"moduleResolution": "node",
