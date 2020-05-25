@@ -1,4 +1,13 @@
 import path from 'path'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import svelte from 'rollup-plugin-svelte'
+import typescript from '@rollup/plugin-typescript'
+import json from '@rollup/plugin-json'
+import alias from '@rollup/plugin-alias'
+import serve from 'rollup-plugin-serve'
+import livereload from 'rollup-plugin-livereload'
+import { terser } from 'rollup-plugin-terser'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -10,12 +19,13 @@ export default {
 		dir: 'public/build'
 	},
 	plugins: [
-		require('rollup-plugin-svelte')({
+		json(),
+		svelte({
 			dev: !production,
 			css: css => css.write('public/build/bundle.css', false),
 			preprocess: require('svelte-preprocess')()
 		}),
-		require('@rollup/plugin-node-resolve')({
+		resolve({
 			browser: true,
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
 			customResolveOptions: {
@@ -23,15 +33,18 @@ export default {
 				extensions: ['.svelte', '/index.svelte', '.mjs', '.js', '.json']
 			}
 		}),
-		require('@rollup/plugin-alias')({
+		commonjs(),
+		typescript(),
+		alias({
 			entries: {
 				components: path.resolve(__dirname, 'src', 'components')
 			}
 		}),
-		require('@rollup/plugin-typescript')(),
-		require('@rollup/plugin-commonjs')(),
-		!production && require('rollup-plugin-serve')('public'),
-		!production && require('rollup-plugin-livereload')('public'),
-		require('rollup-plugin-terser').terser()
-	]
+		serve('public'),
+		!production && livereload('public'),
+		production && terser(),
+	],
+	onwarn: warning => {
+		if (warning.code === 'THIS_IS_UNDEFINED') return
+	}
 }

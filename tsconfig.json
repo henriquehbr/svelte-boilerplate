@@ -2,16 +2,18 @@
 	"compilerOptions": {
 		/* Basic Options */
 		"target": "esnext",
-		"module": "es6",
+		"module": "esnext",
 		"removeComments": true,
 
 		/* Strict Type-Checking Options */
 		"strict": true,
+		"types": ["svelte"],
 
 		/* Module Resolution Options */
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
+		"resolveJsonModule": true,
 		"baseUrl": "./src"
 	}
 }
