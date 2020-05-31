@@ -1,6 +1,6 @@
-<style lang="scss">
+<style>
 	section {
-		color: blue
+		color: var(--blue);
 	}
 </style>
 

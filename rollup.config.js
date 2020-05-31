@@ -37,7 +37,8 @@ export default {
 		typescript(),
 		alias({
 			entries: {
-				components: path.resolve(__dirname, 'src', 'components')
+				components: path.resolve(__dirname, 'src', 'components'),
+				styles: path.resolve(__dirname, 'src', 'styles')
 			}
 		}),
 		serve('public'),
