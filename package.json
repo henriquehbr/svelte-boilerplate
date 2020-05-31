@@ -16,6 +16,7 @@
 		"@rollup/plugin-json": "^4.0.3",
 		"@rollup/plugin-node-resolve": "^8.0.0",
 		"@rollup/plugin-typescript": "^4.1.2",
+		"@storybook/addon-a11y": "^5.3.19",
 		"@storybook/addon-actions": "^5.3.19",
 		"@storybook/addon-backgrounds": "^5.3.19",
 		"@storybook/addon-console": "^1.2.1",

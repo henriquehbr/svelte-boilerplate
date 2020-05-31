@@ -3,7 +3,12 @@ const webpack = require('webpack')
 
 module.exports = {
 	stories: ['../src/stories/**/*.stories.ts'],
-	addons: ['@storybook/addon-backgrounds', '@storybook/addon-viewport', '@storybook/addon-actions'],
+	addons: [
+		'@storybook/addon-backgrounds',
+		'@storybook/addon-viewport',
+		'@storybook/addon-a11y',
+		'@storybook/addon-actions',
+	],
 	webpackFinal: async (/** @type {webpack.Configuration} */ config) => {
 		config.module.rules.push({
 			test: /\.ts$/,
