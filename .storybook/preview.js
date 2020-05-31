@@ -1,4 +1,5 @@
 import { addParameters } from '@storybook/svelte'
+import '@storybook/addon-console'
 
 addParameters({
 	backgrounds: [
