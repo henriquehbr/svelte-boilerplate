@@ -17,6 +17,7 @@
 		"@rollup/plugin-node-resolve": "^8.0.0",
 		"@rollup/plugin-typescript": "^4.1.2",
 		"@storybook/addon-backgrounds": "^5.3.19",
+		"@storybook/addon-viewport": "^5.3.19",
 		"@storybook/svelte": "^5.3.19",
 		"@types/webpack": "^4.41.16",
 		"babel-loader": "^8.1.0",
